@@ -15,6 +15,7 @@ function ListOfDrones(props){
                 return <DroneCard firstName = {key.firstName} lastName = {key.lastName} land = {key.land} />
             })
             }
+            <button onClick={() => {props.reset()}}>Exit</button>
         </div>
     )
 }
