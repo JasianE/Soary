@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import OptionCard from '../components/OptionCard'
 import SetUpDroneDropOff from './SetUpDroneDropOff'
 import ListOfDrones from './ListOfDrones'
+import ChangeDroneStatus from './ChangeDroneStatus'
 
 function Company(props){
     const [active, setActive] = useState(false)
@@ -27,8 +28,8 @@ function Company(props){
 
     return(
         <div>
-            {active === 'Drop' ? <SetUpDroneDropOff reset = {reset} /> : active === 'List' ? <ListOfDrones /> : 
-            active === 'Status' ? <h1>2</h1> :
+            {active === 'Drop' ? <SetUpDroneDropOff reset = {reset} /> : active === 'List' ? <ListOfDrones reset = {reset}/> 
+            : active === 'Status' ? <ChangeDroneStatus reset = {reset} /> : 
             options.map((key) => {
                 return <OptionCard name = {key.name} action = {key.action}/>
             })}
