@@ -1,0 +1,15 @@
+.card{
+    height: 500px;
+    width: 350px;
+    background-color: antiquewhite;
+}
+.optionCard{
+    width: 500px;
+    height: 600px;
+    background-color: aqua;
+}
+.droneCard{
+    height: 400px;
+    width: 300px;
+    background-color: bisque;
+}
