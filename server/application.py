@@ -1,45 +1,36 @@
+import math
 import flask
 import pymongo
+import time
+from djitellopy import Tello
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-
-client = pymongo.MongoClient(
-    "mongodb+srv://esambald:Yj39ual8lXxmwUd4@cluster0.swylr9h.mongodb.net/?retryWrites=true&w=majority"
-)
-db = client.test
-
-
-# write a post method to create a new "drone supplier user" with fields email, password, first name, last name, drone model
-@app.route("/api/v1/users", methods=["POST"])
-def create_user():
+# write an app route called /api/v1/deploy
+@app.route("/api/v1/deploy", methods=["POST"])
+def deploy_drone():
     request_data = flask.request.get_json()
-    email = request_data["email"]
-    password = request_data["password"]
-    first_name = request_data["first_name"]
-    last_name = request_data["last_name"]
-    drone_model = request_data["drone_model"]
-    # create a new user
-    supplier = db.supplier  # collection name
-    user = {
-        "email": email,
-        "password": password,
-        "first_name": first_name,
-        "last_name": last_name,
-        "drone_model": drone_model,
-        "home": "",  # gps coordinates
-    }
-    supplier.insert_one(
-        {
-            "email": email,
-            "password": password,
-            "first_name": first_name,
-            "last_name": last_name,
-            "drone_model": drone_model,
-        }
-    )
-    return flask.jsonify({"message": "user created successfully", "user": user}), 201
+    lat = request_data["latitude"]
+    long = request_data["longitude"]
+    coords = [lat, long]
+    tello = Tello()
+    time.sleep(3)
+    tello.connect()
+    time.sleep(3)
+    tello.takeoff()
+    time.sleep(3)
+    telloLocation = [0, 0]
+    opp = coords[1] - telloLocation[1]
+    adj = coords[0] - telloLocation[0]
+    angle = math.floor(math.atan(opp / adj))
+    time.sleep(3)
+    tello.rotate_clockwise(angle)
+    time.sleep(3)
+    tello.move_forward(math.floor(math.sqrt(opp**2 + adj**2)))
+    time.sleep(3)
+    tello.land()
+    return flask.jsonify({"message": "drone deployed successfully"})
 
 
 # run the application
