@@ -1,14 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import FormCard from '../components/FormCard'
 import Company from './Company'
 
 
-function Homepage(){
+function Homepage() {
 
-    return(
-        <div>
+    return (
+        <div className="">
             <h1>Welcome To Soary!</h1>
-            <Company/>
+            <Company />
         </div>
     )
 }
