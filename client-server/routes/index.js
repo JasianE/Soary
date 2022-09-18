@@ -6,8 +6,8 @@ const supplierController = require('../controllers/supplierController')
 const userController = require('../controllers/userController')
 
 /*Pharmacy Actions*/
-//router.get('/pharmacy/income', pharmacyController)
-//router.get('/pharmacy/findPending', pharmacyController)
+router.get('/pharmacy/:name/income', pharmacyController.incoming)
+router.get('/pharmacy/:name/findPending', pharmacyController.findPending)
 //router.post('/pharmacy/approve', pharmacyController)
 
 /*User Actions */
