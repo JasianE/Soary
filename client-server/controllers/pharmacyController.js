@@ -12,6 +12,7 @@ exports.findPending = function(req,res,next){
     })
 }
 
+
 exports.approve = function(req,res,next){
     pharmacy.find({name: req.body.name}, function(err, pharmacies){
         let i = 0; 
