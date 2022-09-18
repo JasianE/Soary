@@ -4,7 +4,7 @@ const pharmacies = require('../models/general.model')[0]
 exports.placeOrder = async function(req,res, next){
     /* POSTMAN REQ
         {
-            "name": "124",
+            "name": "80",
             "request": {
                 "supplier": "69",
                 "landing-area": {"long": 63, "lat": 23},
@@ -37,14 +37,34 @@ exports.placeOrder = async function(req,res, next){
 }
 
 exports.getAllPharmacies = function(req, res, next) {
-    const pharmacies = pharmacies.find({}, function(error, data) {
+    pharmacies.find({}, function(error, data) {
         if (error) {
             res.status(500).send(error)
         
         } else {
-            res.status(200).send({"pharmacies": pharmacies})
+            res.status(200).send({"pharmacies": data})
         }
     })
+}
 
+exports.confirmDelivery = function(req,res,next){
+    //Change user active into user finished
+    users.find({firstName: req.body.firstName}, function(err, user){
+        let i = 0; 
+        const active = [...user[0].active].find((key) => {
+            i = i + 1
+            return key.supplier === req.body.request.supplier && key.pill === req.body.request.pill
+        })
+        user[0].active.splice(i - 1, 1)
+        user[0].finished.push(active)
+        
+        user[0].update({"active":user[0].active, "finished": user[0].finished}, function(err){
+            if(err){
+                console.log(err)
+            }
+        })
+        
+    })
 
+    res.json('hi')
 }
