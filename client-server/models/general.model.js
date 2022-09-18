@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const PharmacySchema = new Schema({
+    name: {type: String, required: true},
     drones: {type: Array, default: []},
     pending: {type: Array, default: []},
     approved: {type: Array, default: []},
