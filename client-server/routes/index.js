@@ -13,7 +13,7 @@ const userController = require('../controllers/userController')
 //router.get('/user/pharmacies', userController)
 router.post('/user/place-order', userController.placeOrder)
 
-
 /*Supplier Actions */
-
-module.exports = router
+router.post('/supplier/home', supplierController)
+router.get('/supplier/home', supplierController)
+router.get('/supplier/deploy', supplierController)

@@ -13,6 +13,8 @@ const SupplierSchema = new Schema({
 })
 
 const User = new Schema({
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true},
     email: {type: String, required: true},
     active: {type: Array, default: []},
     finished: {type: Array, default: []},
