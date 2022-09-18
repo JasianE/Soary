@@ -1,4 +1,5 @@
 const express = require('express')
+const models = require('./models/general.model')
 
 const app = express()
 const port = 3001
@@ -8,5 +9,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(models)
 })
