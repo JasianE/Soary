@@ -11,3 +11,16 @@ exports.placeOrder = function(req,res, next){
     })
     res.json('hi')
 }
+
+exports.getAllPharmacies = function(req, res, next) {
+    const pharmacies = pharmacies.find({}, function(error, data) {
+        if (error) {
+            res.status(500).send(error)
+        
+        } else {
+            res.status(200).send({"pharmacies": pharmacies})
+        }
+    })
+
+
+}
