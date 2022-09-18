@@ -2,6 +2,7 @@ const models = require('../models/general.model')
 const express = require('express');
 const router = express.Router();
 const pharmacyController = require('../controllers/pharmacyController')
+const supplierController = require('../controllers/supplierController')
 const userController = require('../controllers/userController')
 
 /*Pharmacy Actions*/
@@ -14,6 +15,9 @@ const userController = require('../controllers/userController')
 router.post('/user/place-order', userController.placeOrder)
 
 /*Supplier Actions */
-router.post('/supplier/home', supplierController)
-router.get('/supplier/home', supplierController)
-router.get('/supplier/deploy', supplierController)
+router.post('/supplier/home', supplierController.home)
+router.get('/supplier/home', supplierController.home)
+router.get('/supplier/deploy', supplierController.deploy)
+
+
+module.exports = router;
