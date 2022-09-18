@@ -16,6 +16,12 @@ def kill():
     tello.land()
 
 
+@app.route("/api/v1/test", methods=["GET"])
+def test():
+    print("test")
+    return("hello")
+
+
 @app.route("/api/v1/move", methods=["POST"])
 def move():
     '''
@@ -30,8 +36,9 @@ def move():
     # lat = request_data['latitude']
     # long = request_data['longitude']
     # #get long lat data form database
-
+    print("testing")
     request_data = flask.request.get_json()
+    print(request_data)
     lat = request_data['latitiude']
     long = request_data['longitude']
     destination = request_data['destination']
@@ -69,5 +76,5 @@ def move():
 
 
 # run the application
-app.run()
+app.run(host='0.0.0.0')
 #pushed
