@@ -20,7 +20,7 @@ def kill():
 @app.route("/api/v1/test", methods=["GET"])
 def test():
     print("test")
-    return("hello")
+    return "hello"
 
 
 @app.route("/api/v1/move", methods=["POST"])
@@ -40,9 +40,9 @@ def move():
     print("testing")
     request_data = flask.request.get_json()
     print(request_data)
-    lat = request_data['latitiude']
-    long = request_data['longitude']
-    destination = request_data['destination']
+    lat = request_data["latitiude"]
+    long = request_data["longitude"]
+    destination = request_data["destination"]
     coords = [lat, long]
 
     # initialize and takeoff drone
@@ -78,5 +78,5 @@ def move():
 
 
 # run the application
-app.run(host='0.0.0.0')
-#pushed
+app.run(host="0.0.0.0", port=4758, debug=True)
+# pushed
