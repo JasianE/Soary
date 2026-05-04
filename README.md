@@ -4,6 +4,8 @@ Soary is a web-based drone control platform built at Hack the North 2021. It ena
 
 ## Overview
 
+Devpost: https://devpost.com/software/soary 
+
 The project focuses on connecting hardware with the web by providing a simple interface for sending commands to a drone in real time.
 
 ## Tech Stack
